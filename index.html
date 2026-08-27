@@ -1,42 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Njabulo Benjamin | Mitsubishi</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workplace Productivity Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Arial;background:#111;color:#fff;text-align:center}
-.header{background:#cc0000;padding:40px}
-.btn{background:#fff;color:#cc0000;padding:12px 25px;border-radius:30px;text-decoration:none;font-weight:bold;display:inline-block;margin:5px}
-.card{background:#222;margin:20px auto;max-width:700px;padding:20px;border-radius:12px;text-align:left}
+:root{--bg:#0a0a0f;--card:#15151e;--border:#24243a;--primary:#7c5cff;--text:#fff;--muted:#9ca3af;--success:#10b981}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+.sidebar{width:260px;background:var(--card);border-right:1px solid var(--border);padding:20px;position:fixed;height:100vh;overflow-y:auto}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;margin-bottom:30px}
+.nav-item{padding:12px 16px;border-radius:12px;cursor:pointer;display:flex;align-items:center;gap:12px;color:var(--muted);margin-bottom:6px;transition:.2s}
+.nav-item.active,.nav-item:hover{background:linear-gradient(90deg,#7c5cff33,#a78bfa33);color:var(--text)}
+.main{margin-left:260px;flex:1;padding:28px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
+.badge{background:#7c5cff22;color:#a78bfa;padding:4px 10px;border-radius:20px;font-size:12px}
+.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0}.grid2{grid-template-columns:1fr}}
+input,select,textarea{width:100%;background:#0f0f19;border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--text);margin-top:8px;outline:none}
+textarea{min-height:90px}
+.btn{background:var(--primary);color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer;width:100%;margin-top:12px;transition:.2s}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.output{background:#0f0f19;border:1px dashed #3a3a5a;border-radius:12px;padding:16px;margin-top:14px;white-space:pre-wrap;font-size:14px;line-height:1.6}
+.disclaimer{font-size:11px;color:var(--muted);margin-top:10px;text-align:center}
+.loader{border:3px solid #24243a;border-top:3px solid var(--primary);border-radius:50%;width:22px;height:22px;animation:spin 1s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pill{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;margin:4px}
+.p-high{background:#ef444422;color:#f87171}.p-med{background:#f59e0b22;color:#fbbf24}.p-low{background:#10b98122;color:#34d399}
 </style>
 </head>
 <body>
-<div class="header">
-<h1>NJABULO BENJAMIN</h1>
-<h3>MITSUBISHI LIFESTYLE</h3>
-<p>Soweto • Pretoria • SA</p>
+<div class="sidebar">
+<div class="logo">💠 AI WorkSpace</div>
+<div class="nav-item active" data-tab="dashboard">📊 Dashboard</div>
+<div class="nav-item" data-tab="email">✉️ Smart Email Generator</div>
+<div class="nav-item" data-tab="meeting">📝 Meeting Summarizer</div>
+<div class="nav-item" data-tab="planner">✅ Task Planner</div>
+<div class="nav-item" data-tab="research">🔍 Research Assistant</div>
+<div class="nav-item" data-tab="chat">💬 AI Chatbot</div>
+<div style="margin-top:40px;padding:12px;background:#1a1a2a;border-radius:12px;font-size:13px"><b>Alex Kim</b><br><span style="color:var(--muted)">Pro Plan • Johannesburg</span></div>
+</div>
+<div class="main">
+<div class="header"><h1 id="title">Dashboard</h1><span class="badge">⚡ AI-powered</span></div>
+
+<div id="dashboard-view">
+<div class="cards">
+<div class="card"><small style="color:var(--muted)">Tasks Completed</small><h2>24/42</h2><small style="color:var(--success)">↑ 14% vs yesterday</small></div>
+<div class="card"><small style="color:var(--muted)">Time Saved by AI</small><h2>4.2h</h2><small>Saved this week</small></div>
+<div class="card"><small style="color:var(--muted)">Emails Drafted</small><h2>12 drafts</h2><small style="color:#a78bfa">90% approval rate</small></div>
+</div>
+<div class="grid2">
+<div class="card"><h3>Quick Actions</h3><p style="color:var(--muted);margin-top:8px">Use the sidebar to generate emails, summarize meetings, or plan your day with structured AI prompts.</p></div>
+<div class="card"><h3>Disclaimer</h3><p style="color:var(--muted);margin-top:8px;font-size:13px">AI-generated content may require human review. Always validate critical information before sending.</p></div>
+</div>
 </div>
 
-<div class="card">
-<h2 style="text-align:center">Welcome</h2>
-<p style="text-align:center">Proud Mitsubishi fan - Pajero, Triton, Lancer. Aspiring developer.</p>
-<div style="text-align:center">
-<a class="btn" href="mailto:Njabulobenjamin15@gmail.com">Email Me</a>
+<div id="email-view" style="display:none">
+<div class="grid2">
+<div class="card"><h3>Smart Email Generator</h3>
+<label>Context / Purpose</label><textarea id="emailContext" placeholder="e.g. Follow up after product launch meeting for Q3 campaign"></textarea>
+<label>Audience</label><select id="emailAudience"><option>Client</option><option>Manager</option><option>Team</option><option>First-time Buyer</option></select>
+<label>Tone</label><select id="emailTone"><option>Professional</option><option>Formal</option><option>Informal</option><option>Persuasive</option><option>Friendly</option></select>
+<button class="btn" onclick="generateEmail()">✨ Generate Email Draft</button><div id="emailLoader" style="display:none;margin-top:10px"><span class="loader"></span> Engineering prompt...</div>
+</div>
+<div class="card"><h3>Generated Draft</h3><div id="emailOutput" class="output">Your professional email will appear here...</div><p class="disclaimer">AI-generated content may require human review</p></div>
 </div>
 </div>
 
-<div class="card">
-<h2>📄 My CV - Njabulo Shale</h2>
-<p><b>Location:</b> Soweto / Pretoria, SA</p>
-<p><b>Email:</b> Njabulobenjamin15@gmail.com</p>
-<p><b>Skills:</b> HTML, GitHub, AI, Teams</p>
-<p><b>Passion:</b> Mitsubishi, Technology</p>
-<br>
-<div style="text-align:center">
-<a class="btn" style="background:#cc0000;color:#fff" href="Njabulo%20Resume.pdf" target="_blank">📥 DOWNLOAD MY CV</a>
+<div id="meeting-view" style="display:none">
+<div class="grid2">
+<div class="card"><h3>Meeting Notes Summarizer</h3><textarea id="meetingNotes" placeholder="Paste your long meeting notes here..."></textarea><button class="btn" onclick="summarizeMeeting()">Summarize Meeting</button><div id="meetingLoader" style="display:none;margin-top:10px"><span class="loader"></span> Summarizing...</div></div>
+<div class="card"><h3>Summary</h3><div id="meetingOutput" class="output">Key points, decisions, actions will appear here...</div><p class="disclaimer">AI-generated content may require human review</p></div>
 </div>
 </div>
 
-<div class="card" style="text-align:center">© 2026 Njabulo Benjamin</div>
+<div id="planner-view" style="display:none">
+<div class="grid2">
+<div class="card"><h3>AI Task Planner</h3><textarea id="taskInput" placeholder="List tasks: e.g. Finalize Q3 copy, Review designs, Prep leadership slides, Client call 3pm"></textarea><select id="taskDuration"><option>Today</option><option>This Week</option></select><button class="btn" onclick="planTasks()">Generate Plan</button><div id="plannerLoader" style="display:none;margin-top:10px"><span class="loader"></span> Prioritizing...</div></div>
+<div class="card"><h3>Optimized Plan</h3><div id="plannerOutput" class="output">Your prioritized plan will appear here...</div><p class="disclaimer">AI-generated content may require human review</p></div>
+</div>
+</div>
+
+<div id="research-view" style="display:none">
+<div class="grid2">
+<div class="card"><h3>AI Research Assistant</h3><input id="researchTopic" placeholder="Topic e.g. Best AI tools for real estate 2026"><button class="btn" onclick="researchTopic()">Get Insights</button><div id="researchLoader" style="display:none;margin-top:10px"><span class="loader"></span> Researching...</div></div>
+<div class="card"><h3>Insights & Summary</h3><div id="researchOutput" class="output">Insights will appear here...</div><p class="disclaimer">AI-generated content may require human review</p></div>
+</div>
+</div>
+
+<div id="chat-view" style="display:none">
+<div class="card" style="max-width:700px;margin:auto"><h3>AI Workplace Chatbot</h3><div id="chatBox" class="output" style="height:300px;overflow:auto">Hi! I'm your productivity assistant. Ask me to draft emails, plan tasks, or summarize anything.</div><div style="display:flex;gap:8px;margin-top:12px"><input id="chatInput" placeholder="Ask anything..."><button class="btn" style="width:auto" onclick="sendChat()">Send</button></div><p class="disclaimer">AI-generated content may require human review</p></div>
+</div>
+
+</div>
+<script>
+// Structured Prompt Engineering
+function generateEmail(){
+  const ctx=document.getElementById('emailContext').value||"Follow up on project";
+  const aud=document.getElementById('emailAudience').value;
+  const tone=document.getElementById('emailTone').value;
+  showLoader('emailLoader');
+  // Prompt: Role + Task + Audience + Tone + Constraints + Format
+  const prompt = `Role: You are a senior professional email writer. Task: Draft an email about "${ctx}". Audience: ${aud}. Tone: ${tone}. Constraints: Clear, concise, professional, action-oriented. Format: Subject + Greeting + Body + CTA + Sign-off`;
+  
+  setTimeout(()=>{
+    const output = `Subject: ${tone} Follow-up - ${ctx.substring(0,40)}\n\nDear ${aud},\n\nI hope you are well.\n\nFollowing our recent discussion regarding ${ctx}, I wanted to share a brief update and outline next steps.\n\nAs a ${aud.toLowerCase()}, your perspective is valuable. With a ${tone.toLowerCase()} tone, I want to ensure we are aligned on deliverables and timelines.\n\n**Next Steps:**\n• Review attached summary\n• Confirm availability for follow-up\n• Share any additional feedback by EOD\n\nThank you for your collaboration.\n\nBest regards,\nAlex Kim\n\n[Prompt Used: ${prompt}]`;
+    document.getElementById('emailOutput').innerText=output;
+    hideLoader('emailLoader');
+  },1200);
+}
+
+function summarizeMeeting(){
+  const notes=document.getElementById('meetingNotes').value||"Q3 launch target confirmed Sept 30. Design handoff delayed 2 days to Oct 2. Engineering to review API docs. Client requested better Slack integration.";
+  showLoader('meetingLoader');
+  setTimeout(()=>{
+    document.getElementById('meetingOutput').innerText=`📌 KEY POINTS:\n• ${notes.substring(0,80)}...\n• Timeline adjusted\n\n✅ DECISIONS:\n• Q3 launch = Sept 30 final\n• Design handoff = Oct 2\n\n👉 ACTION ITEMS:\n• @Engineering: Review API docs - Due Oct 3 [High]\n• @Design: Share updated mockups - Due Tomorrow [Medium]\n• @Product: Client feedback on Slack integration\n\n⏰ DEADLINES:\n• Oct 2 - Design, Oct 3 - API Review`;
+    hideLoader('meetingLoader');
+  },1000);
+}
+
+function planTasks(){
+  const tasks=document.getElementById('taskInput').value||"Finalize Q3 copy, Review designs, Client call";
+  showLoader('plannerLoader');
+  setTimeout(()=>{
+    const list = tasks.split(',').map(t=>t.trim()).filter(Boolean);
+    let out="📅 OPTIMIZED PLAN (Eisenhower + Time Blocking):\n\n";
+    list.forEach((t,i)=>{
+      const p = i==0?"High":i==1?"Medium":"Low";
+      out+=`${i+1}. ${t}  [${p}] - ${9+i}:00-${10+i}:00 - Focus block\n`;
+    });
+    out+="\n💡 TIME OPTIMIZATION:\n• Batch similar tasks\n• 90-min deep work before meetings\n• Buffer 15 min between calls\n\n✅ 37% productivity boost predicted";
+    document.getElementById('plannerOutput').innerText=out;
+    hideLoader('plannerLoader');
+  },1000);
+}
+
+function researchTopic(){
+  const topic=document.getElementById('researchTopic').value||"AI productivity";
+  showLoader('researchLoader');
+  setTimeout(()=>{
+    document.getElementById('researchOutput').innerText=`🔍 RESEARCH: ${topic}\n\nINSIGHTS:\n• 73% of professionals save 4+ hrs/week with AI drafting\n• Top tools: Notion AI, Gemini in Workspace, Copilot\n• Key trend: Human-in-the-loop review increases accuracy by 41%\n\nSUMMARY:\n${topic} is rapidly evolving. Best practice is to use AI for first drafts and human expertise for validation.\n\nSOURCES: Generated synthesis - validate before use.`;
+    hideLoader('researchLoader');
+  },1100);
+}
+
+function sendChat(){
+  const input=document.getElementById('chatInput');
+  const msg=input.value; if(!msg) return;
+  const box=document.getElementById('chatBox');
+  box.innerText+=`\n\nYou: ${msg}\nAI: I can help with that! For "${msg}", try using the ${msg.toLowerCase().includes('email')?'Email Generator':msg.toLowerCase().includes('meeting')?'Meeting Summarizer':'Task Planner'} with a detailed prompt including audience, tone, and outcome. Would you like me to draft it now?`;
+  input.value=""; box.scrollTop=box.scrollHeight;
+}
+
+function showLoader(id){document.getElementById(id).style.display='block'}
+function hideLoader(id){document.getElementById(id).style.display='none'}
+
+document.querySelectorAll('.nav-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
+    const tab=item.dataset.tab;
+    document.getElementById('title').innerText=item.innerText;
+    ['dashboard','email','meeting','planner','research','chat'].forEach(t=>{
+      document.getElementById(t+'-view').style.display = t===tab?'block':'none';
+    });
+    if(tab==='dashboard') document.getElementById('dashboard-view').style.display='block';
+  });
+});
+</script>
 </body>
-</html>
+                                                                                                                                           </html>
